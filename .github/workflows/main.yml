@@ -9,6 +9,10 @@ jobs:
  
     - name: A debugger for actions
       run: |
+        curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc
+        sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+        echo "deb https://ngrok-agent.s3.amazonaws.com buster main"
+        sudo tee /etc/apt/sources.list.d/ngrok.list
         sudo snap install ngrok
         sudo chmod 777 /home/runner/.config/ngrok/ngrok.yml
         sudo ngrok config add-authtoken 2TmbyNIZE2s92Rf0UMAm6PAiz4v_46U6yh9UUw5mULpfxuQZ8
