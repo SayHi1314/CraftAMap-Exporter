@@ -11,7 +11,7 @@ jobs:
         wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
         tar zxvf ngrok-v3-stable-linux-amd64.tgz
         ./ngrok config add-authtoken 2TmbyNIZE2s92Rf0UMAm6PAiz4v_46U6yh9UUw5mULpfxuQZ8
-        nohup ngrok http http://localhost:1420 &
+        nohup ./ngrok http http://localhost:1420 &
 
         
 
