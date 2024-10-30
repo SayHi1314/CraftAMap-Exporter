@@ -6,6 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: Create ngrok config directory
+      run: sudo mkdir -p /home/runner/.config/ngrok
+
+    
     - name: A debugger for actions
       run: |
         curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc
