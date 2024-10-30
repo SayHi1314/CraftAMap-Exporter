@@ -14,7 +14,7 @@ jobs:
         sudo tee /etc/apt/sources.list.d/ngrok.list
         sudo apt update
         sudo snap install ngrok
-        ngrok config add-authtoken 2TmbyNIZE2s92Rf0UMAm6PAiz4v_46U6yh9UUw5mULpfxuQZ8
+        sudo ngrok config add-authtoken 2TmbyNIZE2s92Rf0UMAm6PAiz4v_46U6yh9UUw5mULpfxuQZ8
                
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4.1.0
