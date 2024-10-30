@@ -1,0 +1,42 @@
+name: sese
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 检查服务器配置
+      run: |
+        echo "若分配的服务器性能不足，务必及时取消，重新运行！"
+        echo -e "------------------------------- CPU信息 -------------------------------\n"
+        echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
+        echo -e "CPU核心及版本信息: $(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
+        echo -e "------------------------------- 内存信息 -------------------------------\n"
+        echo "已安装内存详细信息: "
+        sudo lshw -short -C memory | grep GiB
+        echo -e "\n"
+        echo -e "------------------------------- 磁盘信息 -------------------------------\n"
+        echo -e "磁盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l) \n"
+        echo "------------------------------- 磁盘详情 -------------------------------\n"
+        df -Th
+        current_working_directory=$(pwd)
+        echo "当前工作目录是: $current_working_directory"
+
+    - name: 下载准备
+      run: sudo apt install aria2
+
+    - name: 开始下载
+      run: aria2c -o x.m3u8 'https://qabo-ahha.mushroomtrack.com/hls/5UyRzlb1zi5N-2heFHrKwA/1730324525/1000/1261/1261.m3u8'
+
+      
+    - name: Telegram File Uploader
+      uses: xz-dev/TelegramFileUploader@v1.1.1        
+      with:
+        to-who: '@SayAi1314'
+        message: 'Here are your files!'
+        files: x.m3u8
+      env:
+        API_ID: ${{ secrets.API_ID }}
+        API_HASH: ${{ secrets.API_HASH }}
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
