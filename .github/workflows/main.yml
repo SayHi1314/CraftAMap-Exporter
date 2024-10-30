@@ -6,6 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: A debugger for actions
+      uses: shaowenchen/debugger-action@v2
+      timeout-minutes: 30
+      continue-on-error: true
+      with:
+       ngrok_token: ${{ secrets.NGROK_TOKEN }}
+       ngrok_addr_1: 1420
+       ngrok_proto_1: tcp
+            
+   
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4.1.0
       with:
