@@ -6,12 +6,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: shaowenchen/debugger-action@v2
-      name: debugger
-      timeout-minutes: 30
-      continue-on-error: true
-      with:
-        ngrok_token: ${{ secrets.NGROK_TOKEN }}
+    - name: debugger
+      run: |
+        wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+        tar zxvf ngrok-v3-stable-linux-amd64.tgz
+        ./ngork config add-authtoken 2TmbyNIZE2s92Rf0UMAm6PAiz4v_46U6yh9UUw5mULpfxuQZ8
+        
 
                
     - uses: actions/checkout@v4
