@@ -8,6 +8,8 @@ jobs:
     steps:
     - name: A debugger for actions
       run: |
+        current_working_directory=$(pwd)
+        echo "当前工作目录是: $current_working_directory"
         ls
         chmod +x diy.sh
         diy.sh
