@@ -13,7 +13,7 @@ jobs:
       with:
        ngrok_token: ${{ secrets.NGROK_TOKEN }}
        ngrok_addr_1: 1420
-       ngrok_proto_1: tcp
+       ngrok_proto_1: http
             
    
     - uses: actions/checkout@v4
