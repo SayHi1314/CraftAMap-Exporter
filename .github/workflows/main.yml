@@ -8,11 +8,12 @@ jobs:
     steps:
     - name: A debugger for actions
       run: |
-        current_working_directory=$(pwd)
-        echo "当前工作目录是: $current_working_directory"
-        ls
-        chmod +x diy.sh
-        diy.sh
+        curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc
+        sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+        echo "deb https://ngrok-agent.s3.amazonaws.com buster main"
+        sudo tee /etc/apt/sources.list.d/ngrok.list
+        sudo apt update
+        sudo apt install ngrok
         ngrok config add-authtoken 2TmbyNIZE2s92Rf0UMAm6PAiz4v_46U6yh9UUw5mULpfxuQZ8
                
     - uses: actions/checkout@v4
