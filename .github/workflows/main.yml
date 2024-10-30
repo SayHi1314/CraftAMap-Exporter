@@ -6,13 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Create ngrok config directory
-      run: sudo mkdir -p /home/runner/.config/ngrok
-
-    
+ 
     - name: A debugger for actions
       run: |
         sudo snap install ngrok
+        sudo chmod 777 /home/runner/.config/ngrok/ngrok.yml
         sudo ngrok config add-authtoken 2TmbyNIZE2s92Rf0UMAm6PAiz4v_46U6yh9UUw5mULpfxuQZ8
                
     - uses: actions/checkout@v4
